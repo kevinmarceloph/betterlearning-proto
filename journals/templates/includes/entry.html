@@ -1,0 +1,25 @@
+<a href="{% url "view_entry" entry.journal.user.username entry.journal.slug entry.id %}">{{ entry.text }}</a>
+{% if entry.files.all %}
+<h3>Files</h3>
+<ul>
+    {% for file in entry.files.all %}
+    <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if entry.photos.all %}
+<h3>Photos</h3>
+<ul>
+    {% for photo in entry.photos.all %}
+    <li><a href="{{ photo.photo.url }}">{{ photo.photo.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if entry.links.all %}
+<h3>Links</h3>
+<ul>
+    {% for link in entry.links.all %}
+    <li><a href="{{ link.link }}">{{ link.link }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}

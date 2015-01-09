@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Journal: {{ journal }}
+{% endblock %}
+
+{% block header %}
+{% include "includes/journal_header.html" %}
+{% endblock %}
+
+{% block content %}
+<h1 class="left">{{ journal }}</h1>
+{% if request.user == journal.user %}
+<a class="button small right" style="margin-top: 16px;" href="{% url "edit_journal" journal.slug %}">Edit Journal</a>
+{% endif %}
+
+<hr class="breathe">
+
+<div class="clearfix">
+    <h2 class="left">Feed <small></h2>
+    {% if request.user == journal.user %}
+    <a class="button small right" href="{% url "add_entry" journal.slug %}">New Entry</a>
+    {% endif %}
+</div>
+<ul class="no-bullet">
+    {% for entry in journal.entries.all %}
+    <li>
+        <div class="panel">
+            {% include "includes/entry.html" %}
+        </div>
+    </li>
+    {% empty %}
+    <li><div class="panel">(empty)</div></li>
+    {% endfor %}
+</ul>
+{% endblock %}

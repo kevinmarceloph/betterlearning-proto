@@ -1,0 +1,14 @@
+<div class="columns large-3" style="height: 254px;">
+    <img src="{{ STATIC_URL }}img/chemistryq.png" style="margin-top: 25px;" />
+</div>
+<div class="columns large-9">
+    <h1 class="journal-name"><a href="{% url "view_journal" journal.user.username journal.slug %}">{{ journal }}</a></h1>
+    <h4 class="description subheader">{{ journal.description|linebreaksbr }}</h4>
+    <blockquote>{{ journal.objectives|linebreaksbr }}</blockquote>
+    <dl class="sub-nav">
+        {% for topic in journal.topics.all %}
+        <dd class="label round"><a href="#" title="{{ topic }}">{{ topic }}</a></dd>
+        {% endfor %}
+    </dl>
+    Created by <a href="{% url "view_profile" journal.user.username %}">{{ journal.user }}</a>.
+</div>

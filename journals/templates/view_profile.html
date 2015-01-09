@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile: {{ user }}
+{% endblock %}
+
+{% block header %}
+{% include "includes/profile_header.html" %}
+{% endblock %}
+
+{% block content %}
+<h1 class="left">Welcome!</h1>
+<a class="button small right" style="margin-top: 16px;" href="{% url "add_journal" %}">New Journal</a>
+
+<hr class="breathe">
+
+{% if user.journals.open %}
+<div class="panel">
+    <h2>Open Journals</h2>
+    <ol>
+        {% for journal in user.journals.open %}
+        <li><a href="{% url "view_journal" journal.user.username journal.slug %}">{{ journal }}</a></li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+
+{% if user.journals.closed %}
+<div class="panel">
+    <h2>Closed Journals</h2>
+    <ol>
+        {% for journal in user.journals.closed %}
+        <li><a href="{% url "view_journal" journal.user.username journal.slug %}">{{ journal }}</a></li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+
+<hr class="breathe">
+
+<h2>Feed</h2>
+<ul class="no-bullet">
+    {% for entry in user.entries.all %}
+    <li>
+        <div class="panel">
+            {% include "includes/entry.html" %}
+        </div>
+    </li>
+    {% empty %}
+    <li><div class="panel">(empty)</div></li>
+    {% endfor %}
+</ul>
+{% endblock %}

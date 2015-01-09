@@ -1,0 +1,20 @@
+[
+{
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+        "username": "a",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2014-12-27T18:30:20.307Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$8z5O8tkiRtuF$CGFSDKTuevCWMHDpK9yTo7OikuKcZL600UQ8bkJJdkQ=",
+        "email": "a@marcelo.ph",
+        "date_joined": "2014-12-27T18:30:20.307Z"
+    }
+}
+]

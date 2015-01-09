@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if journal %}
+Edit Journal: {{ journal }}
+{% else %}
+Add Journal
+{% endif %}
+{% endblock %}
+
+{% block header %}
+{% if journal %}
+{% include "includes/journal_header.html" %}
+{% else %}
+<div class="columns large-3" style="height: 254px;">
+    <img src="{{ STATIC_URL }}img/chemistryq.png" style="margin-top: 25px;" />
+</div>
+<div class="columns large-9">
+    <h1 class="community-name">Add Journal</h1>
+    Created by <a href="{% url "view_profile" request.user.username %}">{{ request.user }}</a>.
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h1>
+    {% if journal %}
+    Edit Journal: {{ journal }}
+    {% else %}
+    Add Journal
+    {% endif %}
+</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

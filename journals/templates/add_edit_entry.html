@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if entry %}
+Edit Entry: #{{ entry.id }}
+{% else %}
+Add Entry
+{% endif %}
+{% endblock %}
+
+{% block header %}
+{% include "includes/journal_header.html" with journal=entry.journal %}
+{% endblock %}
+
+{% block content %}
+<h1>
+    {% if entry %}
+    Edit Entry: #{{ entry.id }}
+    {% else %}
+    Add Entry
+    {% endif %}
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Better Learning | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation-icons.css" />
+    <script src="{{ STATIC_URL }}js/modernizr.js"></script>
+</head>
+<body>
+    <a name="top"></a>
+    <div class="fixed">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="{% url "view_home" %}">Better Learning</a></h1>
+                </li>
+            </ul>
+
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="has-dropdown">
+                        <a href="#">{{ request.user.email }} ({{ request.user }})</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Account</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+    <section id="features-hero" style="background: url({{ STATIC_URL }}img/b2.jpg) #f7fdfe;">
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="row">
+                    {% block header %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="feed">
+        <div class="row">
+            <div class="large-12 columns">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.min.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
+</body>
+</html>
